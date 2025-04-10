@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def create_frame():
+def creat_frame():
     """
     创建一个包含学生信息的DataFrame并保存为CSV文件。
     """
@@ -103,5 +103,5 @@ def main():
     save_processed_data(df)
 
 if __name__ == "__main__":
-    creat_frame = create_frame
+    
     main()
