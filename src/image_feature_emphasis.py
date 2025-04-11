@@ -31,7 +31,7 @@ def plot_filter_surface(filter, title):
     """绘制滤波器3D表面图"""
     fig = plt.figure(figsize=(10, 6))
     ax = fig.add_subplot(111, projection='3d')
-    X, Y = np.meshgrid(np.arange(filter.shape[1]), np.arange(filter.shape[0])
+    X, Y = np.meshgrid(np.arange(filter.shape[1]), np.arange(filter.shape[0]))  # 修复了这里的括号
     ax.plot_surface(X, Y, filter, cmap='viridis')
     ax.set_title(title, fontsize=14)
     plt.show()
