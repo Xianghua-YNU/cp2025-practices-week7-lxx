@@ -17,35 +17,16 @@ def load_stress_fibers():
         return data
 
 
-def create_gauss_filter(sigma_x=5, sigma_y=45, size=50):
-    """创建高斯滤波器
-    
-    参数:
-        sigma_x: X方向方差参数
-        sigma_y: Y方向方差参数
-        size: 滤波器尺寸（奇数）
-    
-    返回:
-        numpy.ndarray: size×size的高斯滤波器
-    """
-    if size % 2 == 0:
-        size += 1  # 确保尺寸为奇数
-    v = np.arange(-size//2, size//2 + 1)
+def create_gauss_filter():
+    """创建高斯滤波器"""
+    v = np.arange(-25, 26)
     X, Y = np.meshgrid(v, v)
-    return np.exp(-0.5*(X**2/sigma_x + Y**2/sigma_y))
+    return np.exp(-0.5*(X**2/5 + Y**2/45))
 
 def create_combined_filter(gauss_filter):
-    """创建高斯-拉普拉斯组合滤波器
-    
-    参数:
-        gauss_filter: 高斯滤波器
-    
-    返回:
-        numpy.ndarray: 与输入相同尺寸的组合滤波器
-    """
-    laplace_filter = np.array([[0, -1, 0], [-1, 4, -1], [0, -1, 0]])
-    # 使用'same'模式保持输出尺寸不变
-    return sim.convolve(gauss_filter, laplace_filter, mode='constant', output=np.float64)
+    """创建组合滤波器"""
+    laplace_filter = np.array([[0,-1,0],[-1,4,-1],[0,-1,0]])
+    return sim.convolve(gauss_filter, laplace_filter)
 
 
 def plot_filter_surface(filter, title):
