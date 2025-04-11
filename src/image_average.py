@@ -29,9 +29,7 @@ def process_image(input_file):
         input_file (str): 输入图像文件路径
     """
     # 1. 读取图像
-    if not os.path.exists(input_file):
-        raise FileNotFoundError(f"图像文件 {input_file} 不存在")
-    
+   
     img = plt.imread(input_file)
     
     # 2. 创建滤波器
@@ -64,8 +62,6 @@ def process_image(input_file):
     plt.show()
 
 if __name__ == "__main__":
-    # 确保data目录存在
-    os.makedirs('data', exist_ok=True)
     
     # 处理图像
     process_image('data/bwCat.tif')
