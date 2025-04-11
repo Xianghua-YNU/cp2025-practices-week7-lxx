@@ -17,7 +17,7 @@ def load_stress_fibers():
         return data
 
 
-def create_gauss_filter(sigma_x=5, sigma_y=45, size=51):
+def create_gauss_filter(sigma_x=5, sigma_y=45, size=50):
     """创建高斯滤波器
     
     参数:
