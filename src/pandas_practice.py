@@ -60,12 +60,25 @@ def visualize_data(data, column_name='成绩'):
     plt.savefig('data/score_distribution.png')
     plt.show()
 
-def save_processed_data(data):
-    """任务7: 保存处理后的数据"""
-    # 确保data目录存在
-    os.makedirs('data', exist_ok=True)
-    data.to_csv('data/processed_data.csv', index=False, encoding='utf-8')
-    print("\n处理后的数据已保存为 data/processed_data.csv")
+def save_processed_data(data, path=None):
+    """任务7: 保存处理后的数据
+    Args:
+        data: 要保存的DataFrame
+        path: 可选参数，指定保存路径。默认为'data/processed_data.csv'
+    """
+    save_path = path or 'data/processed_data.csv'
+    save_path = os.path.abspath(save_path)
+    
+    # 确保目录存在
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    
+    try:
+        data.to_csv(save_path, index=False, encoding='utf-8')
+        print(f"处理后的数据已保存为 {save_path}")
+        return save_path
+    except Exception as e:
+        print(f"保存文件失败: {str(e)}")
+        raise
 
 def main():
     """主函数，执行所有数据处理流程"""
