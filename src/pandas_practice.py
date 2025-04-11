@@ -29,7 +29,16 @@ def load_data():
     except FileNotFoundError:
         print("文件未找到，请先运行create_frame()创建数据文件")
         return None
-
+def show_basic_info(data):
+    """任务2: 显示数据基本信息"""
+    print("\n=== 数据基本信息 ===")
+    print(f"数据形状（行,列）: {data.shape}")
+    print("\n前5行数据:")
+    print(data.head())
+    print("\n数据信息:")
+    print(data.info())
+    print("\n描述性统计:")
+    print(data.describe(include='all'))
 def handle_missing_values(data):
     """任务3: 处理缺失值"""
     # 创建副本避免SettingWithCopyWarning
